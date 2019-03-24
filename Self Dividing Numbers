@@ -1,0 +1,21 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> list=new ArrayList<Integer>();
+            for(int i=left;i<=right;i++)
+              if(sdn(i))
+                  list.add(i);
+        return list;
+    }
+    public boolean sdn(int i)
+    {
+        int n=i;
+        while(n>0)
+        { 
+            int x=n%10;
+            n=n/10;
+            if(x==0 || (i%x)>0)
+                return false;
+        }
+     return true;
+    }
+}
