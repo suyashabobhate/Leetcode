@@ -1,0 +1,22 @@
+class Solution {
+    public char findTheDifference(String s, String t) {
+         Set<Object> set=new HashSet<Object>();
+        String g=s+t;
+        char c='0';
+        for(int i=0;i<g.length();i++)
+        {
+        	  if(!set.contains(g.charAt(i)))
+        	  {
+        		  set.add(g.charAt(i));
+        	  }
+        	  else
+        		  set.remove(g.charAt(i));
+        }
+        for(Object b: set)
+        {
+        	 c=(char) b;
+        }
+      return c;
+  
+    }
+}
