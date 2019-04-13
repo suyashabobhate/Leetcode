@@ -1,0 +1,16 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        ArrayList<Integer> set=new ArrayList<Integer>();
+        for(int i=0;i<nums.length;i++)
+            set.add(nums[i]);          
+        
+           if(set.contains(val))
+               set.removeAll(Collections.singleton(val));
+        
+        int i=0;
+        for(int s: set)
+            nums[i++]=s;
+           
+        return set.size();
+}
+}
