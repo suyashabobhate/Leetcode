@@ -1,0 +1,47 @@
+class Solution {
+    public int[] numberOfLines(int[] widths, String S) {
+            
+        Map<Character,Integer> map1=new HashMap<Character,Integer>();
+        Map<Character,Integer> map2=new HashMap<Character,Integer>();
+        int arr[]=new int[2];
+        int i=0,capacity=100;
+        boolean set=true;
+        int [] W=new int[S.length()];
+        for(char c: "abcdefghijklmnopqrstuvwxyz".toCharArray())
+            map1.put(c,i++);
+
+        for(char c:S.toCharArray()){
+            if(map1.containsKey(c)){
+                map2.put(c,widths[map1.get(c)]);
+            }
+        }
+       
+        i=0;
+
+        for(char c:S.toCharArray()){  
+            set=true;
+            while(set==true){
+               
+            if(W[i]<=100){
+                
+               W[i]+=map2.get(c);
+                
+               if(W[i]>100){
+                   
+                 W[i]-=map2.get(c);
+                 i++;
+                 W[i]+=map2.get(c);  
+                  
+            }
+                
+           }
+              set=false;  
+          }
+            
+        }
+        
+        arr[0]=i+1;
+        arr[1]=W[i];
+       return arr;
+    }
+}
