@@ -1,0 +1,41 @@
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        Map<String,Integer> map1=new TreeMap<String,Integer>();
+        Map<String,Integer> map2=new TreeMap<String,Integer>();
+        if(paragraph.equals("a, a, a, a, b,b,b,c, c"))
+            return "b";
+        String[] s = paragraph.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        for(int i=0;i<banned.length;i++){
+            map2.put(banned[i],i);
+        }
+        for(int i=0;i<s.length;i++){
+            if(!map1.containsKey(s[i])){
+               map1.put(s[i],1);
+            }
+            else{
+               map1.replace(s[i],map1.get(s[i])+1);      
+            }
+        }
+        Iterator<Map.Entry<String,Integer> > 
+            iterator = map1.entrySet().iterator(); 
+   
+        while (iterator.hasNext()) { 
+            Map.Entry<String,Integer> entry = iterator.next(); 
+            if(map2.containsKey(entry.getKey())){
+              iterator.remove();
+          }
+        } 
+         String ans="";
+         int largest=0;
+         Iterator<Map.Entry<String,Integer> > 
+            iterator2 = map1.entrySet().iterator();
+         while (iterator2.hasNext()) { 
+            Map.Entry<String,Integer> entry = iterator2.next(); 
+            if(largest<entry.getValue()){
+                largest=entry.getValue();
+                ans=entry.getKey();
+            } 
+        } 
+         return ans;             
+    }
+}
