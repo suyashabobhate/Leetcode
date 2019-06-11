@@ -1,0 +1,29 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        Map<Character,Integer> map=new HashMap<Character,Integer>();
+        String charset[]={"qwertyuiopQWERTYUIOP","asdfghjklASDFGHJKL","zxcvbnmZXCVBNM"};
+        int k=0;
+        List<String> list=new ArrayList<String>();
+        for(int i=0;i<charset.length;i++){
+            for(int j=0;j<charset[i].length();j++){
+               map.put(charset[i].charAt(j),i);
+            }
+        }
+        for(int i=0;i<words.length;i++){
+            int count=0;
+            int ref=map.get(words[i].charAt(0));
+            
+            for(int j=0;j<words[i].length();j++){
+                if(ref==map.get(words[i].charAt(j)))
+                    count++;
+            }
+            if(count==words[i].length())
+                list.add(words[i]);
+        } 
+        String arr[]=new String[list.size()];
+        for(String c:list){
+            arr[k++]=c;
+        }
+        return arr;
+    }
+}
