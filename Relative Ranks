@@ -1,0 +1,34 @@
+class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+      Map<String,String> map1=new HashMap<String,String>();
+      Map<String,String> map2=new HashMap<String,String>();
+      for(int i=0;i<nums.length;i++){
+          map1.put(String.valueOf(nums[i]),String.valueOf(i));
+      } 
+      Arrays.sort(nums);
+      int k=nums.length-1,j=4;
+      Iterator<Map.Entry<String,String>> it=map1.entrySet().iterator();
+      while(it.hasNext()){
+        Map.Entry<String,String> entry=it.next();
+        if(k==nums.length-1){
+             map2.put(String.valueOf(nums[k--]),"Gold Medal");
+        }
+        else if(k==nums.length-2){
+             map2.put(String.valueOf(nums[k--]),"Silver Medal"); 
+        }
+        else if(k==nums.length-3){
+             map2.put(String.valueOf(nums[k--]),"Bronze Medal");
+        }
+        else{
+             map2.put(String.valueOf(nums[k--]),String.valueOf(j++));
+        }
+        }
+        String [] res=new String[map2.size()];
+        Iterator<Map.Entry<String,String>> it1=map2.entrySet().iterator();
+        while(it1.hasNext()){
+          Map.Entry<String,String> entry=it1.next();
+          res[Integer.valueOf(map1.get(entry.getKey()))]=entry.getValue();
+        }
+        return res;
+    }
+}
