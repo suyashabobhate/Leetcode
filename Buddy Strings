@@ -1,0 +1,30 @@
+class Solution {
+    public boolean buddyStrings(String A, String B) {
+          StringBuffer s=new StringBuffer();
+          int count=0,same=0;
+          for(int i=1;i<A.length();i++){
+            char c=A.charAt(0);
+            if(c==A.charAt(i)){
+                same++;
+            }
+          }
+          for(int i=0;i<A.length();i++){ 
+                  if(A.charAt(i)!=B.charAt(i)){
+                      s.append(A.charAt(i));
+                      s.append(B.charAt(i));
+                  }
+          }
+         for(int i=0;i<s.length()/2;i++){
+            if(s.charAt(i)==s.charAt(s.length()-1-i)){
+                count++;
+            }
+         }
+         if(count==2){
+            return true;
+         }
+         if(s.length()==0 & same>=1){
+            return true;
+         }
+        return false;
+    }
+}
