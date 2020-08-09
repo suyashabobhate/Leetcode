@@ -1,0 +1,12 @@
+class Solution {
+    public int subtractProductAndSum(int n) {
+        String s=String.valueOf(n);
+        String arr1[]=s.split("");
+        int prod=1,sum=0,res=0;
+        for(int i=0;i<arr1.length;i++){
+            prod*=Integer.valueOf(arr1[i]);
+            sum+=Integer.valueOf(arr1[i]);
+        }
+        return res=prod-sum;
+    }
+}
