@@ -1,0 +1,39 @@
+class Solution {
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        String s="";
+        Set<String> set=new LinkedHashSet<>();
+        int j=0,count=0,k=0;
+        for(int i=0;i<licensePlate.length();i++){
+           if(Character.isLetter(licensePlate.charAt(i))){
+               s+=String.valueOf(Character.toLowerCase(licensePlate.charAt(i)));
+           }
+        }
+        while(j!=words.length){
+            String temp=words[j];
+            count=0;
+            for(int i=0;i<s.length();i++){
+                if(words[j].contains(String.valueOf(s.charAt(i)))){
+                   count++;
+                   words[j]=words[j].replaceFirst(String.valueOf(s.charAt(i))," ");
+                }
+            }
+            if(count==s.length()){
+                set.add(temp);
+            }
+            j++;
+        }
+        String arr[]=new String[set.size()];
+        for(String c:set){
+            arr[k++]=c;
+        }
+        int small=arr[0].length();
+        String ans=arr[0];
+        for(int i=1;i<arr.length;i++){
+            if(small>arr[i].length()){
+                small=arr[i].length();
+                ans=arr[i];
+            }
+        }
+        return ans;
+    }
+}
