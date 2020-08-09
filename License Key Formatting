@@ -1,0 +1,50 @@
+class Solution {
+    public String licenseKeyFormatting(String S, int K) {
+        int c=0,length=0;
+        StringBuffer s=new StringBuffer();
+        StringBuffer t=new StringBuffer();
+        for(int i=0;i<S.length();i++){
+            if(Character.isLetterOrDigit(S.charAt(i))){
+                length++;
+                if(Character.isLowerCase(S.charAt(i))){
+                   s.append(Character.toUpperCase((S.charAt(i))));
+                }
+                else{
+                    s.append(S.charAt(i));
+                }
+            }
+        }
+        if(s.length()==0){
+            return "";
+        }
+        if(length%K==0){
+           c=K; 
+        }
+        else{
+            c=length%K;
+        }
+            int j=0;
+            while(j!=c){
+                t.append(s.charAt(j));
+                j++;
+            }
+            if(j!=s.length()){
+              t.append('-');
+            }
+            for(int i=j;i<s.length();i++){
+                int count=0;
+                while(count!=K){
+                    t.append(s.charAt(i));
+                    i++;
+                    count++;
+                }
+                if(i==s.length()){
+                    break;
+                }
+                t.append('-');
+                i--;
+                
+            }
+        return t.toString();
+    }
+}
