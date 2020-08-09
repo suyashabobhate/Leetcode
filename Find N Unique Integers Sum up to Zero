@@ -1,0 +1,25 @@
+class Solution {
+    public int[] sumZero(int n) {
+        int i=0;
+        int arr[]=new int[n];
+        if(n%2==0){
+            int no=-n/2;
+            while(i<n){
+                if(no==0){
+                    no++;
+                    continue;
+                }
+                else{
+                    arr[i++]=no++;
+                }
+            }
+        }
+        else{
+            int no=-n/2;
+            while(i<n){
+                arr[i++]=no++;
+            }
+        }
+        return arr;
+    }
+}
