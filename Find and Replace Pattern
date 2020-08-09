@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        Map<Character,Character> map1;
+        List<String> list=new ArrayList<>();
+        for(int i=0;i<words.length;i++){
+            map1=new HashMap<Character,Character>();
+            for(int j=0;j<words[i].length();j++){
+                if(map1.containsKey(pattern.charAt(j))){
+                    if(map1.get(pattern.charAt(j))!=words[i].charAt(j)){
+                        break;
+                    }
+                }
+                else{
+                    if(!map1.containsValue(words[i].charAt(j)))
+                      map1.put(pattern.charAt(j),words[i].charAt(j));
+                    else{
+                        break;
+                    }
+                }
+                if(j>=pattern.length()-1)
+                  list.add(words[i]);
+            } 
+        }
+        return list;
+    }
+}
