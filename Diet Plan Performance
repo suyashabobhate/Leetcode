@@ -1,0 +1,27 @@
+class Solution {
+    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
+        int i=0,total=0,point=0,count=0;
+        while(i+k<=calories.length){
+           count=0;
+           total=0;
+           for(int j=i;count<k;j++){
+               if(j>calories.length-1){
+                   break;
+               }
+               total+=calories[j];
+               count++;
+           }
+            if(total<lower){
+                point--;
+            }
+            else if(total>upper){
+                point++;
+            }
+            else{
+                point=point;
+            }
+            i++;
+        }
+        return point;
+    }
+}
