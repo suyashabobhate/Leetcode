@@ -1,0 +1,46 @@
+class Solution {
+    public int[] getNoZeroIntegers(int n) {
+        int ans[]=new int[2];
+        int no1=0,no2=0,count=0;
+        if(n%2==0){
+            no1=n/2;
+            no2=n/2;
+        }
+        else{
+            no1=n/2;
+            no2=n/2+1;
+        }
+        while(true){
+            String n1=String.valueOf(no1);
+            String n2=String.valueOf(no2);
+            count=0;
+            for(int i=0;i<n1.length();i++){
+                if(n1.charAt(i)!='0'){
+                    count++;
+                }
+            }
+            if(count==n1.length()){
+                count=0;
+                for(int i=0;i<n2.length();i++){
+                  if(n2.charAt(i)!='0'){
+                    count++;
+                  }
+                }
+                if(count==n2.length()){
+                    ans[0]=no1;
+                    ans[1]=no2;
+                    return ans;
+                }
+                else{
+                    no1--;
+                    no2++;
+                }
+            }
+            else{
+                no1--;
+                no2++;
+            }
+        }
+        
+    }
+}
