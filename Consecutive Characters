@@ -1,0 +1,26 @@
+class Solution {
+    public int maxPower(String s) {
+        List<Integer> list=new ArrayList<>();
+        int count=1;
+        if(s.length()==1){
+            return 1;
+        }
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)==s.charAt(i+1)){
+                count++;
+                list.add(count);
+            }
+            else{
+                list.add(1);
+                count=1;
+            }
+        }
+        int max=0;
+        for(int p:list){
+           if(p>max){
+               max=p;
+           } 
+        }
+        return max;
+    }
+}
