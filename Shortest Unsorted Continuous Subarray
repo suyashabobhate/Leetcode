@@ -1,0 +1,31 @@
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int length=0,count=0,found=0;
+        boolean set=false;
+        int arr[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+          arr[i]=nums[i];
+        }
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+           if(nums[i]!=arr[i]){
+               found=1;
+               if(set==true){
+                  for(int j=0;j<count;j++){
+                      length++;
+                  } 
+                   set=false;
+                   count=0;
+               }
+                  length++;
+           }
+           else{
+               if(found==1){
+                 set=true;
+                 count++;
+               }
+           }
+        }
+        return length;
+    }
+}
