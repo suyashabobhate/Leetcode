@@ -1,0 +1,35 @@
+class SnapshotArray {
+    public List<Map<Integer,Integer>> list;
+    public int count=0;
+    public SnapshotArray(int length) {
+        list=new ArrayList<Map<Integer,Integer>>();
+        list.add(new HashMap<Integer,Integer>());
+    }
+    
+    public void set(int index, int val) {
+        list.get(count).put(index,val);
+    }
+    
+    public int snap() {
+        list.add(new HashMap<Integer,Integer>());
+        count++;
+        return count-1;
+    }
+    
+    public int get(int index, int snap_id) {
+        for(int i=snap_id;i>=0;i--){
+            if(list.get(i).get(index)!=null){
+                return list.get(i).get(index);
+            }
+        }
+        return 0;
+    }
+}
+
+/**
+ * Your SnapshotArray object will be instantiated and called as such:
+ * SnapshotArray obj = new SnapshotArray(length);
+ * obj.set(index,val);
+ * int param_2 = obj.snap();
+ * int param_3 = obj.get(index,snap_id);
+ */
