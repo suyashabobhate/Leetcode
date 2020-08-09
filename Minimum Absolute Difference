@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Stack<Integer> stack=new Stack<>();
+        List<List<Integer>> list1=new ArrayList<>();
+        boolean set=false;
+        Arrays.sort(arr);
+        stack.push(Math.abs(arr[1]-arr[0]));
+        for(int i=1;i<arr.length-1;i++){
+           if((Math.abs(arr[i+1]-arr[i]))<stack.peek()){
+               stack.push(Math.abs(arr[i+1]-arr[i]));
+           }
+        }
+        for(int i=0;i<arr.length-1;i++){
+           List<Integer> list=new ArrayList<>();
+           set=false;
+           if((Math.abs(arr[i+1]-arr[i]))==stack.peek()){
+               list.add(arr[i]);
+               list.add(arr[i+1]);
+               set=true;
+           }
+            if(set==true)
+            list1.add(list);
+        }
+        return list1;
+    }
+}
