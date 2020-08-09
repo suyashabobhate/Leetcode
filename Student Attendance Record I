@@ -1,0 +1,28 @@
+class Solution {
+    public boolean checkRecord(String s) {
+        boolean set1=false,set2=false;
+        int count=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='A'){
+                if(set1==true){
+                    return false;
+                }
+                set1=true;
+                set2=false;
+                count=0;
+            }
+            else if(s.charAt(i)=='L'){
+                if(count>=2 & set2==true){
+                    return false;
+                }
+                set2=true;
+                count++;
+            }
+            else{
+                set2=false;
+                count=0;
+            }
+        }
+        return true;
+    }
+}
