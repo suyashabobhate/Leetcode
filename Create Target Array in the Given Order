@@ -1,0 +1,15 @@
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+        List<Integer> list=new ArrayList<>();
+        int k=0;
+        int []target=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            int indexc=index[i];
+            list.add(indexc,nums[i]);
+        }
+        for(int c:list){
+            target[k++]=c;
+        }
+        return target;
+    }
+}
