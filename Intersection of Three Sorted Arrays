@@ -1,0 +1,29 @@
+class Solution {
+    public List<Integer> arraysIntersection(int[] arr1, int[] arr2, int[] arr3) {
+        Set<Integer> set1=new LinkedHashSet<>();
+        Set<Integer> set2=new LinkedHashSet<>();
+        Set<Integer> set3=new LinkedHashSet<>();
+        List<Integer> list=new ArrayList<>();
+        List<Integer> finallist=new ArrayList<>();
+        for(int i=0;i<arr1.length;i++){
+            set1.add(arr1[i]);
+        }
+        for(int i=0;i<arr2.length;i++){
+            set2.add(arr2[i]);
+        }
+        for(int i=0;i<arr3.length;i++){
+            set3.add(arr3[i]);
+        }
+        for(int c:set1){
+            if(set2.contains(c)){
+                list.add(c);
+            }
+        }
+        for(int c:set3){
+            if(list.contains(c)){
+                finallist.add(c);
+            }
+        }
+        return finallist;
+    }
+}
