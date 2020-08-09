@@ -1,29 +1,38 @@
 class Solution {
     public int maxNumberOfBalloons(String text) {
-        Map<Character,Integer> map=new HashMap<>();
-        Set<Integer> set=new HashSet<>();
+        int small=0,countb=0,counta=0,countl=0,counto=0,countn=0;
+        if(text.contains("b") & text.contains("a") & text.contains("l") & text.contains("o") & text.contains("n")){
         for(int i=0;i<text.length();i++){
-            if(map.containsKey(text.charAt(i))){
-                map.put(text.charAt(i),map.get(text.charAt(i))+1);
+            if(text.charAt(i)=='b'){
+                countb++;
             }
-            else{
-                map.put(text.charAt(i),1);
+            else if(text.charAt(i)=='a'){
+                counta++;
             }
-        }
-        if(map.containsKey('b') & map.containsKey('a') & map.containsKey('l') & map.containsKey('o') & map.containsKey('n')){
-           set.add(map.get('a'));
-           set.add(map.get('l')/2);
-           set.add(map.get('o')/2);
-           set.add(map.get('n')); 
-        
-        int small=map.get('b');
-        for(int c:set){
-            if(c<small){
-                small=c;
+            else if(text.charAt(i)=='l'){
+                countl++;
+            }
+            else if(text.charAt(i)=='o'){
+                counto++;
+            }
+            else if(text.charAt(i)=='n'){
+                countn++;
             }
         }
-            return small;
+        small=counta;
+        if(small>countb){
+            small=countb;
         }
-        return 0;
+        if(small>countl/2){
+            small=countl/2;
+        }
+        if(small>counto/2){
+            small=counto/2;
+        }
+        if(small>countn){
+            small=countn;
+        }
+        }
+        return small;
     }
 }
