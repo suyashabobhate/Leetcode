@@ -1,0 +1,60 @@
+class Solution {
+    public String alphabetBoardPath(String target) {
+        Map<Character,Integer> map=new HashMap<Character,Integer>();
+        int j=1,introw=0,intpos=1,row=0,pos=1;
+        String s="";
+        boolean set=false;
+        for(char c='a';c<='z';c++){
+            map.put(c,j++);
+        }
+        for(int i=0;i<target.length();i++){
+            char c=target.charAt(i);
+            set=false;
+            row=map.get(c)/5;
+              if(map.get(c)%5==0){
+                  row=row-1;
+              }
+             if(c=='z' & intpos>1){
+                row=4;
+             }
+            else if(c=='z' & intpos<=1){
+                set=true;
+                row=5;
+            }
+            if(introw<row){
+                while(introw!=row){
+                    s=s+"D";
+                    introw++;
+                }
+            }
+            else{
+                while(introw!=row){
+                    s=s+"U";
+                    introw--;
+                }
+            }
+            pos=map.get(c)%5;
+            if(map.get(c)%5==0){
+                pos=5;
+            } 
+            if(intpos<pos){
+                 while(intpos!=pos){
+                    s=s+"R";
+                    intpos=intpos+1;
+                }
+            }
+            else{
+                while(intpos!=pos){
+                    s=s+"L";
+                    intpos=intpos-1;
+                }
+            }
+            if(c=='z' & i>=1 & set==false){
+                s=s+"D";
+                introw=introw+1;
+            }
+                s=s+"!";
+        }
+        return s;
+    }
+}
