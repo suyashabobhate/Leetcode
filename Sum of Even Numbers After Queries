@@ -1,0 +1,41 @@
+class Solution {
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int val=0,index=0,sum=0;
+        List<Integer> list1=new ArrayList<>();
+        List<Integer> list2=new ArrayList<>();
+        int []ans=new int[A.length];
+        for(int i=0;i<A.length;i++){
+            if(A[i]%2==0){
+                sum+=A[i];
+                list1.add(i);
+            }
+        }
+        for(int i=0;i<queries.length;i++){
+            val=queries[i][0];
+            index=queries[i][1];
+            if(list1.contains(index)){
+                if(A[index]%2==0){
+                   sum-=A[index];
+                } 
+                 A[index]+=val;
+                if(A[index]%2==0){
+                   sum+=A[index];
+                } 
+            }
+            else{
+                if((A[index]+val)%2==0){
+                    sum+=A[index]+val;
+                    list1.add(index);
+                }
+                 A[index]+=val;
+            }
+            list2.add(sum);
+        }
+        
+        for(int i=0;i<A.length;i++){
+            ans[i]=list2.get(i);
+        }
+        
+        return ans;
+    }
+}
