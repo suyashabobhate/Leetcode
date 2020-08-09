@@ -1,0 +1,17 @@
+class Solution {
+    public boolean hasAlternatingBits(int n) {
+        StringBuffer s=new StringBuffer();
+        while(n>1){
+            s.append(String.valueOf(n%2));
+            n=n/2;
+        }
+        s.append("1");
+        s=s.reverse();
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)==s.charAt(i+1)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
